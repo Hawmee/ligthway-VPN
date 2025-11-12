@@ -1,6 +1,4 @@
 import { useState, type ReactNode } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './styles/App.css'
 
 interface propsType {
@@ -8,7 +6,6 @@ interface propsType {
 }
 
 function App({children} : propsType ) {
-  const [count, setCount] = useState(0)
 
   return (
     <>

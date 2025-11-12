@@ -2,8 +2,9 @@ import React, { type JSX } from 'react'
 
 function PeersLayout() : JSX.Element {
   return (
-    <div>
-      peers
+    <div className=''>
+      peers test
+      
     </div>
   )
 }

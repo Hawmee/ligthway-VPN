@@ -1,8 +1,9 @@
-FROM node:lts-trixie
+# FROM node:lts-trixie
+FROM oven/bun:latest
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package.json bun.lock* ./
+RUN rm -rf node_modules && bun install --force
 COPY . .
 EXPOSE 5173
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["bun", "run", "dev", "--", "--host"]

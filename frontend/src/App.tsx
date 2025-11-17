@@ -9,7 +9,7 @@ function App({children} : propsType ) {
 
   return (
     <>
-      <div>
+      <div className='h-full w-full'>
         {children}
       </div>
     </>

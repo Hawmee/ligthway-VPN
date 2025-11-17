@@ -1,17 +1,35 @@
 @import "tailwindcss";
+@plugin './hero.ts';
 
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 
+.table_main::-webkit-scrollbar , .card::-webkit-scrollbar {
+    width: 0.4rem;
+    display: none;
+}
 
+.table_main::-webkit-scrollbar-thumb , .card::-webkit-scrollbar-thumb  {
+    background: #6162627f;
+    border-radius: 10px;
+    visibility: hidden;
+}
 
+.table_main:hover::-webkit-scrollbar-thumb , .card::-webkit-scrollbar-thumb  {
+    visibility: visible;
+}
+.table_main:hover::-webkit-scrollbar, .card::-webkit-scrollbar {
+    display: block;
+}
 
+.table th {
+    padding: .5rem;
+}
 
+.table tbody td{
+    height: 12px;
+    padding: .7rem;
 
-
-
-
-
-
-
+}
 
 
 

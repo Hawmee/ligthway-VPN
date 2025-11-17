@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./pages/MainLayout";
 import PeersLayout from "./pages/peers/PeersLayout";
-import LogsLayout from "./pages/logs/LogsLayout";
+import ServerInfoLayout from "./pages/server-info/ServerInfoLayout";
 
 
 const router = createBrowserRouter([
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'logs',
-                element: <LogsLayout />
+                element: <ServerInfoLayout/>
             } 
         ]
     }

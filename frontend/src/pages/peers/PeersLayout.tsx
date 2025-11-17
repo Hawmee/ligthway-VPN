@@ -11,6 +11,8 @@ function PeersLayout() : JSX.Element {
             const peers = await get_peers();
             setData(peers);
         } 
+        
+        console.log("Fetching peers...");
 
         fetch_peers();
     } , [])

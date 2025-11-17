@@ -19,3 +19,9 @@
 # Ignorer les dossiers spécifiques
 config/clients/
 secrets/
+/backend/services/__pycache__
+/wireguard-config/coredns
+/backend/routes/__pycache__
+/backend/__pycache__
+/backend/config/__pycache__
+/backend/utils/__pycache__

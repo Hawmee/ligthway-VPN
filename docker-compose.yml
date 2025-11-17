@@ -13,7 +13,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Africa/Nairobi
-      - SERVERURL=192.168.43.10
+      - SERVERURL=10.20.30.40
       - SERVERPORT=51820
       - PEERS=client1
       - PEERSDNS=off

@@ -10,7 +10,7 @@ def create_app():
     CORS(app, 
          resources={r"/*": {
              "origins": [
-                 "http://192.168.43.10:5173",  
+                 "http://10.20.30.40:5173",  
                  "http://localhost:5173",      
                  "http://127.0.0.1:5173"       
              ],

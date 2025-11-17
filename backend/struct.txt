@@ -1,0 +1,20 @@
+wireguard_api/
+├── wsgi.py              # Point d'entrée pour flask run
+├── app.py               # Factory d'application
+├── requirements.txt
+├── routes/
+│   ├── __init__.py
+│   ├── peers.py
+│   ├── server.py
+│   └── wireguard.py
+├── services/
+│   ├── __init__.py
+│   ├── key_service.py
+│   ├── config_service.py
+│   └── wireguard_service.py
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py
+└── config/
+    ├── __init__.py
+    └── settings.py

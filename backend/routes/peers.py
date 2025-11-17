@@ -43,6 +43,12 @@ def add_peer():
         # Create the .conf file for easy download
         ConfigService.create_peer_config_file(name, peer_ip, private_key, preshared_key)
         
+        # Redémarrer le conteneur WireGuard pour appliquer les changements
+        restart_success, restart_message = WireGuardService.restart_wireguard_container()
+        if not restart_success:
+            # Log l'erreur mais ne bloque pas la réponse
+            print(f"Warning: {restart_message}")
+
         return jsonify({
             "message": f"Peer {name} created successfully",
             "peer_name": name,
@@ -79,6 +85,11 @@ def delete_peer(name):
     try:
         name = sanitize_peer_name(name)
         
+        # Remove peer from server config first
+        success, message = WireGuardService.remove_peer_from_server_config(name)
+        if not success:
+            return jsonify({"error": message}), 500
+        
         # Remove peer directory
         peer_dir = os.path.join(WIREGUARD_PATH, name)
         if os.path.exists(peer_dir):
@@ -88,6 +99,11 @@ def delete_peer(name):
         config_path = os.path.join(WIREGUARD_PATH, f"{name}.conf")
         if os.path.exists(config_path):
             os.remove(config_path)
+
+        restart_success, restart_message = WireGuardService.restart_wireguard_container()
+        if not restart_success:
+            # Log l'erreur mais ne bloque pas la réponse
+            print(f"Warning: {restart_message}")
             
         return jsonify({"message": f"Peer {name} deleted successfully"})
             

@@ -26,3 +26,10 @@ secrets/
 /backend/__pycache__
 /backend/config/__pycache__
 /backend/utils/__pycache__
+
+wireguard-config/*
+!wireguard-config/coredns/
+!wireguard-config/peer_client1/
+!wireguard-config/wg_confs/
+!wireguard-config/server/
+!wireguard-config/templates/

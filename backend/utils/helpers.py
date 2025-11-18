@@ -14,7 +14,7 @@ def list_existing_peers(wireguard_path):
     peers = []
     try:
         for f in os.listdir(wireguard_path):
-            if os.path.isdir(os.path.join(wireguard_path, f)) and f not in ['server', 'templates', 'wg_confs']:
+            if os.path.isdir(os.path.join(wireguard_path, f)) and f not in ['server', 'templates', 'wg_confs', 'coredns', 'peer_client1']:
                 # return as objects with a `name` key to match requested format
                 peers.append({"name": f})
     except FileNotFoundError:

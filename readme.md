@@ -52,7 +52,7 @@ docker compose start
 - frontend URL : `http://<server_ip>:5173`
 - backend URL : `http://<server_ip>:5000`
 - metrics URL : `http://<server_ip>:9586/metrics`
-- protheus URL : `http://<server_ip>:9090`
+- prometheus URL : `http://<server_ip>:9090`
 
 
 ## Common tasks

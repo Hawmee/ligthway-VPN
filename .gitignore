@@ -1,5 +1,6 @@
 # Ignorer les fichiers de configuration VPN
 *.conf
+!dir.conf
 *.ovpn
 
 # Ignorer les clés privées et certificats

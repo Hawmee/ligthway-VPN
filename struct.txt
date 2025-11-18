@@ -1,17 +1,39 @@
-lightway-vpn/
-│
-├── docker-compose.yml
-│
-├── backend/
-│   ├── Dockerfile
-│   ├── app.py
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── Dockerfile
+ligthway-VPN/                     
+├── docker-compose.yml            
+├── ip.py                         
+├── readme.md                     
+├── struct.txt                    
+
+├── backend/                      
+│   ├── app.py                    
+│   ├── wsgi.py                   
+│   ├── Dockerfile                
+│   ├── requirements.txt          
+│   ├── config/
+│   │   └── settings.py           
+│   ├── routes/                   
+│   ├── services/                 
+│   └── utils/                    
+
+├── frontend/                     
+│   ├── Dockerfile                
 │   ├── package.json
+│   ├── pnpm-lock.yaml
+│   ├── tsconfig*.json
+│   ├── vite.config.ts
 │   └── src/
-│       └── ...
-│
-└── wireguard-config/
-    └── ...
+│       ├── App.tsx
+│       ├── main.tsx
+│       ├── router.tsx
+│       ├── pages/
+│       └── services/             
+
+├── template/                     
+│   ├── app.py.template
+│   └── config_service.py.template
+
+├── wireguard-config/             
+│   ├── templates/                
+│   ├── server/                   
+│   ├── <peer-name>/              
+│   └── wg_confs/                 

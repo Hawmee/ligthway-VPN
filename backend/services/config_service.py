@@ -48,7 +48,7 @@ ListenPort = 51820
 PublicKey = {server_public_key}
 PresharedKey = {preshared_key}
 Endpoint = 192.168.88.30:51820
-AllowedIPs = 0.0.0.0/0
+AllowedIPs = 0.0.0.0/0, 10.0.3.0/24
 """
             
             with open(os.path.join(peer_dir, "peer.conf"), "w") as f:
@@ -74,7 +74,7 @@ DNS = 8.8.8.8
 PublicKey = {server_public_key}
 PresharedKey = {preshared_key}
 Endpoint = 192.168.88.30:51820
-AllowedIPs = 0.0.0.0/0
+AllowedIPs = 0.0.0.0/0, 10.0.3.0/24
 """
         
         conf_file_path = os.path.join(WIREGUARD_PATH, f"{peer_name}.conf")

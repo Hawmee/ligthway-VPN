@@ -17,7 +17,7 @@ services:
       - SERVERPORT=51820
       - PEERS=client1
       - PEERSDNS=off
-      - INTERNAL_SUBNET=192.0.0.0
+      - INTERNAL_SUBNET=10.0.3.0
       - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - ./wireguard-config:/config

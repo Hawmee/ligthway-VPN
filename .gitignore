@@ -1,6 +1,8 @@
 # Ignorer les fichiers de configuration VPN
 *.conf
 !dir.conf
+!/wireguard-config/templates/peer.conf
+!/wireguard-config/templates/server.conf
 *.ovpn
 
 # Ignorer les clés privées et certificats

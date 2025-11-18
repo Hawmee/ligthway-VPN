@@ -49,6 +49,11 @@ If you already built images and want to start existing containers:
 docker compose start
 ```
 
+- frontend URL : `http://<server_ip>:5317`
+- backend URL : `http://<server_ip>:5000`
+- metrics URL : `http://<server_ip>:9586/metrics`
+- protheus URL : `http://<server_ip>:9090`
+
 
 ## Common tasks
 
@@ -118,7 +123,6 @@ If you add sensitive keys or real WireGuard configs for testing, exclude them fr
 If you need help or want to report issues, open an issue in the repository.
 
 ---
-
 
 ---
 

@@ -16,7 +16,7 @@ class WireGuardService:
             # Calculate next available IP
             existing_peers = len([f for f in os.listdir(WIREGUARD_PATH) 
                                  if os.path.isdir(os.path.join(WIREGUARD_PATH, f)) and f not in ['server', 'templates', 'wg_confs']])
-            peer_ip = f"192.0.0.{existing_peers + 2}"
+            peer_ip = f"10.0.3.{existing_peers + 2}"
             
             # Peer configuration to add to server
             peer_config = f"""

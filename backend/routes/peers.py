@@ -1,4 +1,5 @@
 from flask import jsonify, request, Blueprint
+import threading
 import os
 import shutil
 from config.settings import WIREGUARD_PATH
@@ -43,22 +44,37 @@ def add_peer():
         # Create the .conf file for easy download
         ConfigService.create_peer_config_file(name, peer_ip, private_key, preshared_key)
         
-        # Redémarrer le conteneur WireGuard pour appliquer les changements
-        restart_success, restart_message = WireGuardService.restart_wireguard_container()
-        if not restart_success:
-            # Log l'erreur mais ne bloque pas la réponse
-            print(f"Warning: {restart_message}")
-
-        return jsonify({
+        # Prepare response data first
+        response_data = {
             "message": f"Peer {name} created successfully",
             "peer_name": name,
             "ip_address": peer_ip,
             "config_file": f"{name}.conf",
             "directory": name
-        })
+        }
         
+        # Start WireGuard restart in background thread
+        def restart_wireguard_background():
+            try:
+                restart_success, restart_message = WireGuardService.restart_wireguard_container()
+                if not restart_success:
+                    print(f"Warning: {restart_message}")
+                else:
+                    print("WireGuard container restarted successfully")
+            except Exception as e:
+                print(f"Error restarting WireGuard container: {e}")
+        
+        # Start the background thread
+        thread = threading.Thread(target=restart_wireguard_background)
+        thread.daemon = True  # This ensures the thread won't prevent program exit
+        thread.start()
+        
+        return jsonify(response_data)
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
 
 @peers_bp.route("/peer/<name>", methods=["GET"])
 def get_peer_config(name):
@@ -100,12 +116,29 @@ def delete_peer(name):
         if os.path.exists(config_path):
             os.remove(config_path)
 
-        restart_success, restart_message = WireGuardService.restart_wireguard_container()
-        if not restart_success:
-            # Log l'erreur mais ne bloque pas la réponse
-            print(f"Warning: {restart_message}")
-            
-        return jsonify({"message": f"Peer {name} deleted successfully"})
+        # Prepare response data
+        response_data = {"message": f"Peer {name} deleted successfully"}
+        
+        # Start WireGuard restart in background thread
+        def restart_wireguard_background():
+            try:
+                restart_success, restart_message = WireGuardService.restart_wireguard_container()
+                if not restart_success:
+                    print(f"Warning: {restart_message}")
+                else:
+                    print(f"WireGuard container restarted successfully after deleting peer {name}")
+            except Exception as e:
+                print(f"Error restarting WireGuard container: {e}")
+        
+        # Start the background thread
+        thread = threading.Thread(target=restart_wireguard_background)
+        thread.daemon = True  # This ensures the thread won't prevent program exit
+        thread.start()
+        
+        return jsonify(response_data)
             
     except Exception as e:
+
+
         return jsonify({"error": str(e)}), 500
+

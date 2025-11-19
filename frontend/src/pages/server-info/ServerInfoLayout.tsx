@@ -1,13 +1,12 @@
-import React, { useEffect, useState, type JSX } from 'react'
+import { useEffect, useState, type JSX } from 'react'
 import { get_server_info } from '../../services/Peers'
 import type { responseServInfo } from '../../types/Types'
-import { Button } from '@heroui/react'
+import { useOutletContext } from 'react-router-dom'
 
 
 function ServerInfoLayout() : JSX.Element {
 
-    const [info , setInfo] = useState <responseServInfo | null> (null)
-
+  const [info , setInfo] = useState <responseServInfo | null> (null)
   useEffect(()=>{
     const fetch_info = async ()=>{
       const inf = await get_server_info();
